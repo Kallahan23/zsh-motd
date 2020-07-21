@@ -36,10 +36,10 @@ message() {
     fi
 }
 
-if [ -f /etc/profile.d/update-motd.sh ]; then
+if [ -d /etc/update-motd.d ]; then
     temp_file=$(mktemp)
-    ./update-motd.sh > $temp_file
-    
+    . $ZSH/custom/plugins/zsh-motd/update-motd.sh > $temp_file
+
     # Linux MOTD
     if [ -s "$temp_file" ]; then
         cat $temp_file | rainbow_dino
