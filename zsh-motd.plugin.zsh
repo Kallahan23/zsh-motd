@@ -38,7 +38,7 @@ message() {
 
 if [ -d /etc/update-motd.d ]; then
     temp_file=$(mktemp)
-    . $ZSH/custom/plugins/zsh-motd/update-motd.sh > $temp_file
+    . ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-motd/update-motd.sh > $temp_file
 
     # Linux MOTD
     if [ -s "$temp_file" ]; then
