@@ -15,7 +15,8 @@ It's ok if you don't have a certain package installed. You just won't get the pr
 
 - Default is a fortune or a standard greeting if fortune is not installed
 - Add `export ZSH_MOTD_CUSTOM=<A static message>` to your .zshrc to set the message to a static message
-- Add `export ZSH_MOTD_WOTD=1` to your .zshrc to set the message to a random word
+- Add `export ZSH_MOTD_WOTD` to your .zshrc to set the message to a random word
+- Add `export ZSH_MOTD_ALWAYS` to your .zshrc so that the full header is shown every time, instead of the default every 3 hours
 
 ## Installation
 
