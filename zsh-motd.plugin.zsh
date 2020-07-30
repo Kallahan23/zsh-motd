@@ -52,5 +52,6 @@ elif [ ! -z ${ZSH_MOTD_ALWAYS+x} ] || ! find $stamp -mmin -179 2> /dev/null | gr
     print_header
     touch $stamp
 else
+    echo
     random_word | ( hash lolcat 2>/dev/null && lolcat || cat )
 fi
