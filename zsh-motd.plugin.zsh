@@ -19,7 +19,7 @@ rainbow_dino() {
 }
 
 fortune_text() {
-    ( hash fortune 2>/dev/null && fortune || printf "Hey $USER\n" )
+    ( hash fortune 2>/dev/null && fortune "$ZSH_MOTD_DATABASE" || printf "Hey $USER\n" )
 }
 
 print_header() {
