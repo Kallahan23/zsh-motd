@@ -51,7 +51,7 @@ if [ -d /etc/update-motd.d ] && [ ! -e "$HOME/.hushlogin" ] && [ -z "$MOTD_SHOWN
 elif [ ! -z ${ZSH_MOTD_ALWAYS+x} ] || ! find $stamp -mmin -179 2> /dev/null | grep -q -m 1 '.'; then
     print_header
     touch $stamp
-else
+elif [ -z "${ZSH_MOTD_NO_WORD_OF_THE_DAY}" ]; then
     echo
     random_word | ( hash lolcat 2>/dev/null && lolcat || cat )
 fi
