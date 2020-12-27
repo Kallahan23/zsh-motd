@@ -18,6 +18,7 @@ It's ok if you don't have a certain package installed. You just won't get the pr
 - Add `export ZSH_MOTD_WOTD` to your .zshrc to set the message to a random word
 - Add `export ZSH_MOTD_ALWAYS` to your .zshrc so that the full header is shown every time, instead of the default every 3 hours
 - Add `export ZSH_MOTD_DATABASE` to your .zshrc to specify the fortune database from which messages are picked
+- Add `export ZSH_MOTD_COW` to your .zshrc to specify the animal display, default to stegosaurus. `cowsay -l` to list them.
 
 ## Installation
 

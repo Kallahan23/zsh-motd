@@ -14,7 +14,7 @@ random_word() {
 }
 
 rainbow_dino() {
-    ( hash cowsay 2>/dev/null && cowsay -n -f stegosaurus || cat ) |
+    ( hash cowsay 2>/dev/null && cowsay -n -f ${ZSH_MOTD_COW-stegosaurus} || cat ) |
     ( hash lolcat 2>/dev/null && lolcat || cat )
 }
 
