@@ -20,6 +20,7 @@ It's ok if you don't have a certain package installed. You just won't get the pr
 - Add `export ZSH_MOTD_DATABASE` to your .zshrc to specify the fortune database from which messages are picked
 - Add `export ZSH_MOTD_COW` to your .zshrc to specify the animal display, default to stegosaurus. `cowsay -l` to list them.
 - Set `ZSH_MOTD_NO_WORD_OF_THE_DAY` to a non-empty value to disable the display of a random word.
+- Add `export ZSH_MOTD_RANDOM_COW` to your .zshrc to use a random cow each time. Supercedes ZSH_MOTD_COW
 
 ## Installation
 

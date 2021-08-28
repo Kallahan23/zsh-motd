@@ -13,6 +13,12 @@ random_word() {
     perl -e 'open IN, "</usr/share/dict/words";rand($.) < 1 && ($n=$_) while <IN>;print $n'
 }
 
+random_cow() {
+    local cow_list=("beavis.zen" "blowfish" "bong" "bud-frogs" "bunny" "cheese" "cower" "daemon" "default" "dragon" "dragon-and-cow" "elephant" "elephant-in-snake" "eyes" "flaming-sheep" "ghostbusters" "head-in" "hellokitty" "kiss" "kitty" "koala" "kosh" "luke-koala" "meow" "milk" "moofasa" "moose" "mutilated" "ren" "satanic" "sheep" "skeleton" "small" "stegosaurus" "stimpy" "supermilker" "surgery" "three-eyes" "turkey" "turtle" "tux" "udder" "vader" "vader-koala" "www")
+    local the_random_cow=${cow_list[$RANDOM % ${#cow_list[@]}]}
+    echo $the_random_cow
+}
+
 rainbow_dino() {
     ( hash cowsay 2>/dev/null && cowsay -n -f ${ZSH_MOTD_COW-stegosaurus} || cat ) |
     ( hash lolcat 2>/dev/null && lolcat || cat )
@@ -24,6 +30,10 @@ fortune_text() {
 
 print_header() {
     # Custom message
+    if [[ -v ZSH_MOTD_RANDOM_COW ]]; then
+        ZSH_MOTD_COW=$(random_cow)
+    fi
+
     if [ ! -z ${ZSH_MOTD_CUSTOM+x} ]; then
         echo $ZSH_MOTD_CUSTOM |
         ( hash figlet 2>/dev/null && figlet || cat ) |
