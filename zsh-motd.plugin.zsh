@@ -13,17 +13,27 @@ random_word() {
     perl -e 'open IN, "</usr/share/dict/words";rand($.) < 1 && ($n=$_) while <IN>;print $n'
 }
 
+random_cow() {
+    local cow_list=("beavis.zen" "blowfish" "bud-frogs" "bunny" "cheese" "cower" "daemon" "default" "dragon" "dragon-and-cow" "elephant" "elephant-in-snake" "eyes" "flaming-sheep" "ghostbusters" "hellokitty" "kiss" "kitty" "koala" "kosh" "luke-koala" "mech-and-cow" "meow" "milk" "moofasa" "moose" "mutilated" "ren" "satanic" "sheep" "skeleton" "small" "stegosaurus" "stimpy" "supermilker" "surgery" "three-eyes" "turkey" "turtle" "tux" "udder" "vader" "vader-koala" "www")
+    local the_random_cow=${cow_list[$RANDOM % ${#cow_list[@]}]}
+    echo $the_random_cow
+}
+
 rainbow_dino() {
-    ( hash cowsay 2>/dev/null && cowsay -n -f stegosaurus || cat ) |
+    ( hash cowsay 2>/dev/null && cowsay -n -f ${ZSH_MOTD_COW-stegosaurus} || cat ) |
     ( hash lolcat 2>/dev/null && lolcat || cat )
 }
 
 fortune_text() {
-    ( hash fortune 2>/dev/null && fortune || printf "Hey $USER\n" )
+    ( hash fortune 2>/dev/null && fortune "$ZSH_MOTD_DATABASE" || printf "Hey $USER\n" )
 }
 
 print_header() {
     # Custom message
+    if [[ -v ZSH_MOTD_RANDOM_COW ]]; then
+        ZSH_MOTD_COW=$(random_cow)
+    fi
+
     if [ ! -z ${ZSH_MOTD_CUSTOM+x} ]; then
         echo $ZSH_MOTD_CUSTOM |
         ( hash figlet 2>/dev/null && figlet || cat ) |
@@ -51,7 +61,7 @@ if [ -d /etc/update-motd.d ] && [ ! -e "$HOME/.hushlogin" ] && [ -z "$MOTD_SHOWN
 elif [ ! -z ${ZSH_MOTD_ALWAYS+x} ] || ! find $stamp -mmin -179 2> /dev/null | grep -q -m 1 '.'; then
     print_header
     touch $stamp
-else
+elif [ -z "${ZSH_MOTD_NO_WORD_OF_THE_DAY}" ]; then
     echo
     random_word | ( hash lolcat 2>/dev/null && lolcat || cat )
 fi
